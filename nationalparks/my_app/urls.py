@@ -1,6 +1,9 @@
 from django.urls import path
-from . import views # Import views to connect routes to view functions
+from . import views 
 
 urlpatterns = [
    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('parks/', views.park_index, name='park-index'),
 ]
+

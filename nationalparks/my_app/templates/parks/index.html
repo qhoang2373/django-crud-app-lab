@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/national-parks/park-index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>National Parks</h1>
+  <img src="{% static 'images/national-parks-banner.jpg' %}" alt="National Parks Banner" />
+</section>
+
+<section class="card-container">
+  <h2>Explore Our National Parks</h2>
+  {% for park in parks %}
+    <div class="card">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img src="{% static 'images/park-placeholder.jpg' %}" alt="{{ park.name }} National Park" />
+          </div>
+          <h2 class="card-title">{{ park.name }} National Park</h2>
+          <p>{{ park.location }}</p>
+          <p><small>{{ park.description | truncatechars:150 }}</small></p>  </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'nationalparks.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'nationalparks',
+       'NAME': 'nationalparksapp',
    }
 }
 
