@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import NationalPark
+
 from django.http import HttpResponse
 
 # Define the home view function
@@ -9,17 +11,9 @@ def about(request):
     return render(request, 'about.html')
 
 def park_index(request):
-    # Render the cats/index.html template with the cats data
+    parks = NationalPark.objects.all()
     return render(request, 'parks/index.html', {'parks': parks})
 
-class NationalPark:
-    def __init__(self, name, location, description, established_date):
-        self.name = name
-        self.location = location
-        self.description = description
-        self.established_date = established_date
-        
-parks = [
-    NationalPark('Yosemite', 'California', 'Home of Half Dome', 1890),
-    NationalPark('Sequoia', 'California', 'Big Trees', 1890),
-]
+def park_detail(request, park_id):
+    parks = NationalPark.objects.all()
+    return render(request, 'parks/detail.html', {'parks': parks})
