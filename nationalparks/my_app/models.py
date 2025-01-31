@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
 class NationalPark(models.Model):
@@ -9,3 +11,6 @@ class NationalPark(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('park-detail', kwargs={'park_id': self.id})

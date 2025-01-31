@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import NationalPark
 
 from django.http import HttpResponse
@@ -17,3 +18,17 @@ def park_index(request):
 def park_detail(request, park_id):
     parks = NationalPark.objects.all()
     return render(request, 'parks/detail.html', {'parks': parks})
+
+class ParkCreate(CreateView):
+    model = NationalPark
+    fields = ['name', 'location', 'description', 'established_date']
+    success_url = '/parks/'
+
+class ParkUpdate(UpdateView):   
+    model = NationalPark
+    fields = ['location', 'description', 'established_date']
+
+class ParkDelete(DeleteView):
+    model = NationalPark
+    success_url = '/parks/'
+

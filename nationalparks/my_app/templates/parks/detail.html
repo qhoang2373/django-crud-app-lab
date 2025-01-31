@@ -28,6 +28,12 @@
 
           <p><strong>Established Date:</strong> {{ park.established_date }}</p>
 
+          <div class="park-actions">
+            <a href="{% url 'park-update' park.id %}" class="btn warn">Edit</a>
+            <a href="{% url 'park-delete' park.id %}" class="btn danger">Delete</a>
+          </div>
+        </div>
+
       </a>
     </div>
     
