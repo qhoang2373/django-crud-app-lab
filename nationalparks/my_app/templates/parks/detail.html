@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/national-parks/park-index.css' %}"/>
 {% endblock %}
@@ -13,19 +12,14 @@
 
 <section class="card-container">
   <!-- <h2>Explore Our National Parks</h2> -->
-  {% for park in parks %}
     <div class="card">
         <div class="card-content">
           <div class="card-img-container">
             <!-- <img src="{% static 'images/park-placeholder.jpg' %}" alt="{{ park.name }} National Park" /> -->
           </div>
-
           <h2 class="card-title">{{ park.name }}</h2>
-
           <p><strong>Location:</strong> {{ park.location }}</p>
-
           <p><strong>Description:</strong> {{ park.description | truncatechars:150 }}</small></p>  </div>
-
           <p><strong>Established Date:</strong> {{ park.established_date }}</p>
 
           <div class="park-actions">
@@ -33,10 +27,42 @@
             <a href="{% url 'park-delete' park.id %}" class="btn danger">Delete</a>
           </div>
         </div>
-
       </a>
     </div>
-    
-  {% endfor %}
 </section>
+
+<!-- New index for 2nd model-->
+<div class="trails-container">
+  <section class="trails">
+    <div class="subsection-title">
+      <h2>Trails</h2>
+    </div>
+    <h3>Add a Trail</h3>
+<!-- Form for Adding a trail -->
+<form method="post" class="subsection-content" autocomplete="off">
+  {% csrf_token %} 
+  {{ trail_form.as_p }}
+  <button type="submit" class="btn submit">Add Trail</button>
+</form>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Difficulty</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for trail in park.trail_set.all %}
+          <tr>
+            <td>{{trail.name}}</td>
+            <td>{{trail.get_difficulty_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+
 {% endblock %}
+
+

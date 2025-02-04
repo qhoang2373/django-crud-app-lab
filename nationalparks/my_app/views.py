@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import NationalPark
+from .forms import TrailForm
+
 
 from django.http import HttpResponse
 
@@ -16,8 +18,9 @@ def park_index(request):
     return render(request, 'parks/index.html', {'parks': parks})
 
 def park_detail(request, park_id):
-    parks = NationalPark.objects.all()
-    return render(request, 'parks/detail.html', {'parks': parks})
+    park = NationalPark.objects.get(id=park_id)
+    trail_form = TrailForm()
+    return render(request, 'parks/detail.html', {'park': park, 'trail_form':trail_form})
 
 class ParkCreate(CreateView):
     model = NationalPark
