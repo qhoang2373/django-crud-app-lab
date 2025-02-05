@@ -19,8 +19,9 @@
             <!-- <img src="{% static 'images/park-placeholder.jpg' %}" alt="{{ park.name }} National Park" /> -->
           </div>
 
-          <h2 class="card-title">{{ park.name }}</h2>
-
+          <h2 class="card-title">{{ park.name }} </h2>
+            <!-- id:{{park.id}}</h2> -->
+              <a href="/parks/{{park.id}}">Visit Park</a>
           <!-- <p><strong>Location:</strong> {{ park.location }}</p>
 
           <p><strong>Description:</strong> {{ park.description | truncatechars:150 }}</small></p>  </div>
