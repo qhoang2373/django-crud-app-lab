@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,26 +8,39 @@
     <link rel="shortcut icon" type="image/png" href="" />
     <title>National Parks</title>
     {% block head %} 
+    
     {% endblock %}
   </head>
   <body>
     <header>
       <div class="header-logo-container">
         <a href="/">
-          <!-- <img src="" alt="National Park Logo" /> -->
         </a>
       </div>
       <nav>
         <ul>
-            <li><a href="/parks">All Parks</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'park-index' %}">All Parks</a></li>
             <li><a href="{% url 'park-create' %}">Add a Park</a></li>
-            <li><a href="/about">About National Parks</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li>
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+            </li>
+          {% else %}
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'home' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
         </ul>
-      </nav>
+      </nav>      
     </header>
     <main>
      {% block content %} 
+     
      {% endblock %}
-     </main>
+    </main>
   </body>
 </html>

@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from django.contrib.auth.models import User
+
 
 DIFFICULTY = (
     ('E', 'Easy'),
@@ -20,6 +22,9 @@ class NationalPark(models.Model):
 
     def get_absolute_url(self):
         return reverse('park-detail', kwargs={'park_id': self.id})
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 
 class Trail(models.Model):
