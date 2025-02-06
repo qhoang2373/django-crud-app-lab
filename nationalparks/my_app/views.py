@@ -26,7 +26,7 @@ def add_trail(request, park_id):
     form = TrailForm(request.POST)
     if form.is_valid():
         new_trail = form.save(commit=False)
-        new_trail.nationalpark_id = park_id
+        new_trail.national_park_id = park_id
         new_trail.save()
     return redirect('park-detail', park_id=park_id)
 
