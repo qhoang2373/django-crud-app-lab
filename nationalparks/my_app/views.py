@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import NationalPark
 from .forms import TrailForm
+from .models import Trail
 
 
 from django.http import HttpResponse
@@ -63,6 +64,12 @@ class ParkCreate(LoginRequiredMixin, CreateView):
 
     success_url = '/parks/'
 
+# class TrailList(ListView):
+#     model = Trail
+
+class TrailDetail(DetailView):
+    model = Trail
+
 class ParkUpdate(UpdateView):   
     model = NationalPark
     fields = ['location', 'description', 'established_date']
@@ -70,5 +77,21 @@ class ParkUpdate(UpdateView):
 class ParkDelete(DeleteView):
     model = NationalPark
     success_url = '/parks/'
+
+
+
+class TrailUpdate(LoginRequiredMixin, UpdateView):
+    model = Trail
+    fields = ['name', 'difficulty']
+    success_url = '/trails/' 
+
+class TrailDelete(LoginRequiredMixin, DeleteView):
+    model = Trail
+    success_url = '/trails/' 
+
+class TrailList(ListView):
+    model = Trail
+    template_name = 'trails/trail_list.html'  
+    context_object_name = 'trails'  
 
 

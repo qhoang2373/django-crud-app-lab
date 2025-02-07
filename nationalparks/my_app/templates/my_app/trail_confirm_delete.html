@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+
+<div>
+  <h1>Delete Trail</h1>
+</div>
+<form action="" method="post" class="form">
+  {% csrf_token %}
+  <a href="{% url 'trail-delete' trail.id %}"> Cancel </a>
+  <button type="submit" >Delete Trail!</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Trails</h1>
+  <ul>
+    {% for trail in trails %}
+      <li>{{ trail.name }} - {{ trail.get_difficulty_display }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
